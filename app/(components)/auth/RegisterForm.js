@@ -9,16 +9,8 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useRef, useState, useEffect } from "react";
-
 import { encryptData, decryptData } from "../../api/server/utils/Crypto";
-import {
-  FaGoogle,
-  FaGithub,
-  FaEye,
-  FaEyeSlash,
-  FaEnvelope,
-  FaCheckCircle,
-} from "react-icons/fa";
+import { FaEye, FaEyeSlash, FaCheckCircle } from "react-icons/fa";
 import { TextField, IconButton } from "@mui/material";
 
 const RegisterForm = () => {
@@ -53,17 +45,16 @@ const RegisterForm = () => {
 
   const { data: session, status } = useSession();
   const retrieveOTP = () => {
-    const encryptedOTP = localStorage.getItem("otp"); // Await the promise
+    const encryptedOTP = localStorage.getItem("otp");
     if (encryptedOTP) {
       const decryptedotp = decryptData(encryptedOTP);
-      return decryptedotp; // Decrypt OTP before returning
+      return decryptedotp;
     }
     return null;
   };
 
   const handleVerifyEmail = async () => {
     try {
-      // Check if the email already exists
       const responseEmail = await fetch(`/api/checkUserExists?email=${email}`, {
         method: "GET",
       });
@@ -73,7 +64,6 @@ const RegisterForm = () => {
         throw new Error("Email already exists! ");
       }
 
-      // If email doesn't exist, proceed to send OTP
       const response = await fetch("/api/sendotp", {
         method: "POST",
         headers: {
@@ -87,17 +77,13 @@ const RegisterForm = () => {
         const otp = responseData.otp;
         storeOTP(otp);
         setOtpSent(true);
-        setError(""); // Clear any previous errors
+        setError("");
       } else {
-        // Handle failure to send OTP
         throw new Error("Failed to send OTP. Please try again.");
       }
     } catch (error) {
-      // Handle any errors
       console.error("Error verifying email:", error);
-      // toast.error(
-      //   error.message || "Error sending OTP. Please try again later."
-      // );
+
       setError(error.message || "Error sending OTP. Please try again later.");
     }
   };
@@ -107,23 +93,17 @@ const RegisterForm = () => {
       const storedEncryptedOTP = retrieveOTP();
 
       if (storedEncryptedOTP) {
-        // Your existing code to compare OTPs
         if (otp === storedEncryptedOTP) {
           setOtpVerified(true);
           localStorage.removeItem("otp");
           toast.success("OTP verified");
-          // OTP validated successfully
         } else {
-          // toast.error("Invalid OTP. Please enter the correct OTP.");
           setError("Invalid OTP. Please enter the correct OTP.");
-          // Invalid OTP handling
         }
       } else {
         toast.error("no otp in storage");
-        // No OTP found in storage
       }
     } catch (error) {
-      // toast.error("Error validating OTP. Please try again later.");
       setError("Error validating OTP. Please try again later.");
       console.error("Error validating OTP:", error);
     }
@@ -179,7 +159,7 @@ const RegisterForm = () => {
     setIsSSOUser(event.target.checked);
   };
   const handleBackButton = () => {
-    setIsSSOUser(false); // Set isSSOUser to false when back button is clicked
+    setIsSSOUser(false);
     checkboxRef.current.checked = false;
   };
 

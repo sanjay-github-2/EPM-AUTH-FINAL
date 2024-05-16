@@ -2,11 +2,9 @@
 
 import { signOut, useSession } from "next-auth/react";
 import { useEffect, useRef, useState } from "react";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import Link from "next/link";
-import { MdAccountCircle } from "react-icons/md";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { useCallback } from "react";
 
@@ -53,18 +51,6 @@ const Header = ({ toggleOpen }) => {
     window.location.href = "/manageUsers";
   }, []);
   const renderAvatar = () => {
-    console.log(session);
-    // if (session?.user?.image) {
-    //   return (
-    //     <img
-    //       src={session?.user?.image}
-    //       alt="User Avatar"
-    //       className="w-10 h-10 rounded-full cursor-pointer shadow-md"
-    //       onMouseEnter={() => setShowDropdown(!showDropdown)}
-    //       onClick={() => setShowDropdown(!showDropdown)}
-    //     />
-    //   );
-    // } else {
     const userNameInitial = session?.user?.email?.charAt(0).toUpperCase();
     return (
       <div

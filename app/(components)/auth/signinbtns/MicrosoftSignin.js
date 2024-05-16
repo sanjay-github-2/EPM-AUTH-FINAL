@@ -1,5 +1,4 @@
 import { signIn } from "next-auth/react";
-// Import your SVG image
 
 const MicrosoftButton = () => {
   const handleSignIn = () => {
@@ -18,7 +17,7 @@ const MicrosoftButton = () => {
         <img
           src="/assets/microsoft.svg"
           alt="Microsoft"
-          style={{ width: "25px", height: "25px" }} // Adjust size as needed
+          style={{ width: "25px", height: "25px" }}
         />
       </div>
     </button>

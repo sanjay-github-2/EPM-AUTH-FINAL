@@ -1,12 +1,11 @@
-// components/SignOut.js
-"use client"
+"use client";
 
-import { signOut } from 'next-auth/react'
+import { signOut } from "next-auth/react";
 
 const SignOut = () => {
   const handleSignOut = async () => {
-    await signOut({ callbackUrl: '/' }) // Redirect to the home page after sign out
-  }
+    await signOut({ callbackUrl: "/" });
+  };
 
   return (
     <button
@@ -15,7 +14,7 @@ const SignOut = () => {
     >
       Sign Out
     </button>
-  )
-}
+  );
+};
 
-export default SignOut
+export default SignOut;

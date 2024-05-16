@@ -1,17 +1,10 @@
 "use client";
 
 import { useRef, useState } from "react";
-
 import Loader from "../loader/loader";
 import { toast } from "react-toastify";
 import { TextField, IconButton } from "@mui/material";
-import {
-  FaGoogle,
-  FaGithub,
-  FaEye,
-  FaEyeSlash,
-  FaMicrosoft,
-} from "react-icons/fa";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const ForgotPasswordForm = ({ setIsFlipped, isFlipped }) => {
   const [email, setEmail] = useState("");
@@ -20,7 +13,6 @@ const ForgotPasswordForm = ({ setIsFlipped, isFlipped }) => {
   const [otp, setOtp] = useState("");
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const otpInputs = useRef([]);
@@ -50,7 +42,6 @@ const ForgotPasswordForm = ({ setIsFlipped, isFlipped }) => {
       const responseData = await response.json();
 
       if (response.ok) {
-        // Check the response message to determine success or failure
         if (responseData.message === "OTP sent successfully") {
           setEmailSent(true);
           setErrorMessage("OTP is valid for 2 minutes");
@@ -59,7 +50,6 @@ const ForgotPasswordForm = ({ setIsFlipped, isFlipped }) => {
           setErrorMessage(responseData.message);
         }
       } else {
-        // Handle different error messages from the server
         switch (response.status) {
           case 400:
             setErrorMessage(responseData.message);
@@ -122,7 +112,7 @@ const ForgotPasswordForm = ({ setIsFlipped, isFlipped }) => {
 
   const resetpassword = async () => {
     setError(null);
-    setErrorMessage(""); // Clear any previous error message
+    setErrorMessage("");
     setloader(true);
 
     if (password.trim() && confirmPassword.trim() === "") {
@@ -146,14 +136,12 @@ const ForgotPasswordForm = ({ setIsFlipped, isFlipped }) => {
       const responseData = await response.json();
 
       if (response.ok) {
-        // Check the response message to determine success or failure
         if (response.ok && response.status === 201) {
           window.location.href = "/";
         } else {
           throw new Error("Something went wrong!");
         }
       } else {
-        // Handle different error messages from the server
         switch (response.status) {
           case 400:
             setErrorMessage(responseData.message);

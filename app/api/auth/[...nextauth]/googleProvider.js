@@ -18,7 +18,6 @@ const googleProvider = GoogleProvider({
         await updateLastLoggedIn(newUser.email);
         return newUser;
       }
-      console.log(profile);
 
       await updateLastLoggedIn(profile.email);
       return await getUserByEmail(profile.email);

@@ -13,15 +13,8 @@ import { signIn } from "next-auth/react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
-import { TextField, Button, IconButton } from "@mui/material";
-
-import {
-  FaGoogle,
-  FaGithub,
-  FaEye,
-  FaEyeSlash,
-  FaMicrosoft,
-} from "react-icons/fa";
+import { TextField, IconButton } from "@mui/material";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const LoginForm = () => {
   const router = useRouter();
@@ -49,6 +42,7 @@ const LoginForm = () => {
 
     return () => clearTimeout(errorTimeout);
   }, [error]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);

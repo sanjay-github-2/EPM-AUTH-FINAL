@@ -26,6 +26,7 @@ export const options = {
       if (user) {
         token.id = user.id;
         token.email = user.email;
+        token.name = user.name;
         token.role = user.role;
         token.group = user.group;
         token.access_type = user.access_type;
@@ -39,6 +40,7 @@ export const options = {
       if (token) {
         session.user = {
           role: token.role,
+          name: token.name,
           group: token.group,
           id: token.id,
           email: token.email,

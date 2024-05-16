@@ -168,7 +168,6 @@ const checkEmailExists = async (email) => {
     const client = await pool.connect();
     const result = await client.query(query, [email]);
     client.release();
-    console.log(result.rows[0]);
     return parseInt(result.rows[0].count) > 0;
   } catch (error) {
     console.error("Error checking if email exists:", error);
