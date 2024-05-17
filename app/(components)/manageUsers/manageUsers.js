@@ -82,7 +82,6 @@ const ManageUsers = () => {
 
   const handlesingleselect = (email, action) => {
     if (action === "delete") {
-      console.log(email);
       deleteUserByEmail([email]);
       router.refresh();
       fetchUsers(setUsers, setLoading);
@@ -101,6 +100,7 @@ const ManageUsers = () => {
   const handleBulkDelete = () => {
     deleteUserByEmail(selectedEmails);
     fetchUsers(setUsers, setLoading);
+    router.refresh();
   };
 
   const handleSearchIconHover = () => {

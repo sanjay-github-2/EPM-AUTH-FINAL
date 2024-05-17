@@ -83,10 +83,10 @@ const LoginForm = () => {
         className="flex align-middle justify-center "
         handleBackButton={handleBackButton}
       >
-        <div className="md:w-80 h-full  bg-white p-8 pt-2 rounded shadow-md flex flex-col ">
+        <div className="md:w-80   bg-white p-8 pt-2 rounded shadow-md flex flex-col h-[92vh]">
           {loading && <Loader />}{" "}
           <form onSubmit={handleSubmit}>
-            <h1 className="text-xl font-bold mb-4">Sign In</h1>{" "}
+            <h3 className="font-bold text-2xl mb-3">Sign In </h3>
             <div className="flex flex-col gap-5 mt-2">
               <TextField
                 id="email"
@@ -175,7 +175,7 @@ const LoginForm = () => {
             </strong>{" "}
           </p>
           {error && (
-            <div className=" bg-red-500 text-white px-3 py-1 mt-2 rounded-md">
+            <div className=" bg-red-500 text-white px-3 py-1 mt-2 font-bold">
               {error}
             </div>
           )}
